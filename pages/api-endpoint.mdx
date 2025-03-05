@@ -1,0 +1,320 @@
+---
+title: "LawLinkGlobal API Dokümantasyonu"
+description: "LawLinkGlobal API'si hakkında kapsamlı teknik dokümantasyon ve kullanım örnekleri"
+keywords: "lawlink api, hukuk api, dava yönetimi api, rest api, webhook"
+---
+
+# API Dokümantasyonu
+
+LawLinkGlobal API'si, platformun özelliklerine programatik erişim sağlar. Bu API, RESTful prensiplere göre tasarlanmıştır ve JSON formatında veri alışverişi yapar.
+
+## Kimlik Doğrulama
+
+API'ye erişmek için API anahtarı kullanmanız gerekmektedir. API anahtarınızı hesap ayarlarınızdan oluşturabilirsiniz.
+
+```bash
+curl -X GET "https://api.lawlinkglobal.com/v1/cases" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+
+## Temel URL
+
+```
+https://api.lawlinkglobal.com/v1
+```
+
+## Hata Kodları
+
+| Kod | Açıklama |
+| --- | --- |
+| 200 | Başarılı |
+| 400 | Geçersiz istek |
+| 401 | Kimlik doğrulama hatası |
+| 403 | Yetkisiz erişim |
+| 404 | Kaynak bulunamadı |
+| 429 | Çok fazla istek |
+| 500 | Sunucu hatası |
+
+## Hız Sınırları
+
+API istekleri, aşağıdaki hız sınırlarına tabidir:
+
+- Standart plan: Dakikada 60 istek
+- Premium plan: Dakikada 120 istek
+- Kurumsal plan: Dakikada 300 istek
+
+## Uç Noktalar
+
+### Davalar
+
+#### Tüm davaları listele
+
+```
+GET /cases
+```
+
+Parametreler:
+
+| Parametre | Tip | Açıklama |
+| --- | --- | --- |
+| page | integer | Sayfa numarası (varsayılan: 1) |
+| limit | integer | Sayfa başına sonuç sayısı (varsayılan: 20, maksimum: 100) |
+| status | string | Dava durumu filtresi (active, closed, pending) |
+| client_id | string | Müvekkil ID'sine göre filtrele |
+
+Örnek yanıt:
+
+```json
+{
+  "data": [
+    {
+      "id": "case_123456",
+      "title": "Smith vs. Johnson",
+      "case_number": "CV-2023-789",
+      "court": "Ankara 3. Asliye Hukuk Mahkemesi",
+      "status": "active",
+      "client_id": "client_789012",
+      "created_at": "2023-01-15T10:30:00Z",
+      "updated_at": "2023-05-20T14:45:00Z"
+    },
+    // ...
+  ],
+  "meta": {
+    "current_page": 1,
+    "total_pages": 5,
+    "total_count": 98
+  }
+}
+```
+
+#### Dava detaylarını getir
+
+```
+GET /cases/{case_id}
+```
+
+Örnek yanıt:
+
+```json
+{
+  "id": "case_123456",
+  "title": "Smith vs. Johnson",
+  "case_number": "CV-2023-789",
+  "court": "Ankara 3. Asliye Hukuk Mahkemesi",
+  "status": "active",
+  "description": "Tazminat davası",
+  "client_id": "client_789012",
+  "assigned_users": [
+    {
+      "id": "user_123",
+      "name": "Av. Mehmet Yılmaz",
+      "role": "primary_attorney"
+    }
+  ],
+  "hearings": [
+    {
+      "id": "hearing_456",
+      "date": "2023-06-15T09:00:00Z",
+      "location": "Salon 302"
+    }
+  ],
+  "created_at": "2023-01-15T10:30:00Z",
+  "updated_at": "2023-05-20T14:45:00Z"
+}
+```
+
+#### Yeni dava oluştur
+
+```
+POST /cases
+```
+
+İstek gövdesi:
+
+```json
+{
+  "title": "Yeni Dava",
+  "case_number": "CV-2023-999",
+  "court": "İstanbul 5. Asliye Hukuk Mahkemesi",
+  "status": "active",
+  "description": "Alacak davası",
+  "client_id": "client_789012"
+}
+```
+
+#### Dava güncelle
+
+```
+PUT /cases/{case_id}
+```
+
+İstek gövdesi:
+
+```json
+{
+  "title": "Güncellenmiş Dava Başlığı",
+  "status": "closed",
+  "description": "Güncellenmiş açıklama"
+}
+```
+
+#### Dava sil
+
+```
+DELETE /cases/{case_id}
+```
+
+### Müvekkiller
+
+#### Tüm müvekkilleri listele
+
+```
+GET /clients
+```
+
+#### Müvekkil detaylarını getir
+
+```
+GET /clients/{client_id}
+```
+
+#### Yeni müvekkil oluştur
+
+```
+POST /clients
+```
+
+#### Müvekkil güncelle
+
+```
+PUT /clients/{client_id}
+```
+
+#### Müvekkil sil
+
+```
+DELETE /clients/{client_id}
+```
+
+### Belgeler
+
+#### Tüm belgeleri listele
+
+```
+GET /documents
+```
+
+#### Belge detaylarını getir
+
+```
+GET /documents/{document_id}
+```
+
+#### Belge yükle
+
+```
+POST /documents
+```
+
+#### Belge güncelle
+
+```
+PUT /documents/{document_id}
+```
+
+#### Belge sil
+
+```
+DELETE /documents/{document_id}
+```
+
+### Takvim
+
+#### Etkinlikleri listele
+
+```
+GET /events
+```
+
+#### Etkinlik detaylarını getir
+
+```
+GET /events/{event_id}
+```
+
+#### Etkinlik oluştur
+
+```
+POST /events
+```
+
+#### Etkinlik güncelle
+
+```
+PUT /events/{event_id}
+```
+
+#### Etkinlik sil
+
+```
+DELETE /events/{event_id}
+```
+
+### Faturalar
+
+#### Faturaları listele
+
+```
+GET /invoices
+```
+
+#### Fatura detaylarını getir
+
+```
+GET /invoices/{invoice_id}
+```
+
+#### Fatura oluştur
+
+```
+POST /invoices
+```
+
+#### Fatura güncelle
+
+```
+PUT /invoices/{invoice_id}
+```
+
+#### Fatura sil
+
+```
+DELETE /invoices/{invoice_id}
+```
+
+## Webhook'lar
+
+LawLinkGlobal, aşağıdaki olaylar için webhook'lar sağlar:
+
+- Yeni dava oluşturulduğunda
+- Dava durumu değiştiğinde
+- Yeni belge yüklendiğinde
+- Duruşma tarihi yaklaştığında
+- Fatura oluşturulduğunda
+- Ödeme alındığında
+
+Webhook'ları yapılandırmak için hesap ayarlarınızdaki "Webhook'lar" bölümüne gidin.
+
+## SDK'lar
+
+LawLinkGlobal API'si için aşağıdaki SDK'lar mevcuttur:
+
+- [JavaScript/Node.js](https://github.com/lawlinkglobal/lawlink-node)
+- [Python](https://github.com/lawlinkglobal/lawlink-python)
+- [PHP](https://github.com/lawlinkglobal/lawlink-php)
+- [Java](https://github.com/lawlinkglobal/lawlink-java)
+- [Ruby](https://github.com/lawlinkglobal/lawlink-ruby)
+
+## Destek
+
+API ile ilgili sorularınız için api-support@lawlinkglobal.com adresine e-posta gönderebilirsiniz. 
