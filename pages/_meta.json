@@ -1,27 +1,21 @@
 {
   "index": {
-    "title": "Ana Sayfa",
-    "description": "LawLinkGlobal dokümantasyon ana sayfası"
+    "title": "Ana Sayfa"
   },
   "giris": {
-    "title": "Giriş",
-    "description": "LawLinkGlobal platformuna giriş ve temel özellikler"
+    "title": "Giriş"
   },
   "kullanici-rehberi": {
-    "title": "Kullanıcı Rehberi",
-    "description": "LawLinkGlobal platformunun kullanımı hakkında detaylı rehber"
+    "title": "Kullanıcı Rehberi"
   },
   "api-endpoint": {
-    "title": "API Dokümantasyonu",
-    "description": "LawLinkGlobal API'si hakkında teknik dokümantasyon"
+    "title": "API Endpoint"
   },
   "sss": {
-    "title": "Sık Sorulan Sorular",
-    "description": "LawLinkGlobal platformu hakkında sık sorulan sorular ve yanıtları"
+    "title": "Sık Sorulan Sorular"
   },
   "destek": {
-    "title": "Destek",
-    "description": "LawLinkGlobal için destek kanalları ve kaynakları"
+    "title": "Destek"
   },
   "contact": {
     "title": "İletişim",
