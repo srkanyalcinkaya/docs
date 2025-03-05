@@ -5,7 +5,7 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
  
-    // Or if using `src` directory:
+    // Veya alternatif olarak src klasörü kullanıyorsanız:
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
