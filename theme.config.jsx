@@ -6,9 +6,9 @@ export default {
     </div>
   ),
   project: {
-    link: 'https://github.com/lawlinkglobal/docs',
+    link: 'https://github.com/srkanyalcinkaya/docs',
   },
-  docsRepositoryBase: 'https://github.com/lawlinkglobal/docs/blob/main',
+  docsRepositoryBase: 'https://github.com/srkanyalcinkaya/docs/blob/main',
   footer: {
     text: `© ${new Date().getFullYear()} LawLinkGlobal. Tüm hakları saklıdır.`,
   },
