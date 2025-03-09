@@ -1,24 +1,45 @@
 {
   "index": {
-    "title": "Ana Sayfa"
+    "title": "Introduction"
   },
-  "giris": {
-    "title": "Giriş"
+  "overview": {
+    "title": "Overview"
   },
-  "kullanici-rehberi": {
-    "title": "Kullanıcı Rehberi"
+  "user-guide": {
+    "title": "User Guide"
   },
-  "api-endpoint": {
-    "title": "API Endpoint"
+  "lawyer-guide": {
+    "title": "Lawyer Guide"
   },
-  "sss": {
-    "title": "Sık Sorulan Sorular"
+  "technical-documentation": {
+    "title": "Technical Documentation"
   },
-  "destek": {
-    "title": "Destek"
+  "services-and-modules": {
+    "title": "Services Modules"
   },
-  "contact": {
-    "title": "İletişim",
+  "legal-and-compliance": {
+    "title": "Legal and Compliance"
+  },
+  "faq": {
+    "title": "FAQ"
+  },
+  "community-and-support": {
+    "title": "Community and Support"
+  },
+  "official-website": {
+    "title": "Official Website",
+    "type": "page",
+    "href": "https://lawlinkglobal.com",
+    "newWindow": true
+  },
+  "legal-resources": {
+    "title": "Legal Framework",
+    "type": "page",
+    "href": "https://legal.lawlinkglobal.com",
+    "newWindow": true
+  },
+  "lawlinkglobal-platform": {
+    "title": "Platform",
     "type": "page",
     "href": "https://lawlinkglobal.com",
     "newWindow": true

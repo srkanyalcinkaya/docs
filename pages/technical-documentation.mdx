@@ -1,0 +1,194 @@
+---
+title: Technical Documentation
+description: In-depth technical information, architecture overview, and API specifications for LawLinkGlobal’s decentralized legal services platform.
+---
+
+# Technical Documentation
+
+Welcome to LawLinkGlobal’s Technical Documentation. This documentation provides detailed technical insights into the architecture, blockchain integration, security mechanisms, and API references for developers integrating with LawLinkGlobal’s decentralized legal services platform.
+
+---
+
+## Platform Overview
+
+LawLinkGlobal is built on a decentralized architecture leveraging the **Sui Network**, smart contracts, and wallet-based authentication to ensure secure and transparent interactions between users and verified legal professionals worldwide.
+
+### Core Architecture Components:
+
+- **Blockchain Network:**  
+  - Built on [Sui Network](https://sui.io/).
+  - Utilizes Sui’s unique object-based model for scalable, efficient transactions.
+
+- **Authentication Layer (Wallet-based Auth):**  
+  - Wallet addresses (e.g., Sui Wallet) serve as decentralized user and lawyer identities.
+  - No centralized username/password storage, enhancing security and user privacy.
+
+- **Smart Contracts & Escrow:**  
+  - Written in [Move](https://github.com/MystenLabs/sui-move), Sui’s smart contract language.
+  - Escrow smart contracts automatically manage consultation payments, refunds, and milestones.
+
+- **Microservices:**  
+  - Appointment Scheduling Service
+  - Lawyer KYC Verification Service
+  - Chatbox Communication Service
+  - Real-time Currency Conversion Service (SUI to USD rates)
+  - Notification & Support Service (P2P and Admin-support)
+
+- **Encrypted Document Storage:**  
+  - Temporary secure storage during KYC verification.
+  - Documents permanently deleted post-verification approval.
+
+---
+
+## Blockchain & Smart Contract Details
+
+LawLinkGlobal uses smart contracts extensively to automate and secure various functionalities:
+
+### Escrow Contract Workflow:
+
+- User schedules an appointment, payment is locked in escrow (SUI tokens).
+- Upon successful completion (based on consultation checkpoint triggers), escrow releases payment automatically.
+- If conditions are not met (e.g., lawyer absence), escrow refunds the payment.
+
+### Lawyer Verification Contract:
+
+- Admin wallet whitelists verified lawyer wallet addresses.
+- Verification documents are encrypted off-chain and deleted post-approval, maintaining data privacy.
+
+---
+
+## Wallet Authentication Mechanism
+
+- Wallet connection via browser extensions (e.g., Sui Wallet) or mobile wallets.
+- Authenticated sessions managed through secure cryptographic signatures.
+- Dashboard access restricted to verified wallet addresses (lawyers) or authenticated wallet connections (users).
+
+---
+
+## Data Handling & Security
+
+LawLinkGlobal employs strict data security practices:
+
+- **Data Minimization:**  
+  Only essential data is retained temporarily (encrypted verification documents).
+- **Encryption:**  
+  Sensitive documents encrypted with AES-256 during transmission and temporary storage.
+- **Automatic Deletion:**  
+  Documents deleted immediately upon admin verification.
+- **Decentralized Auth:**  
+  No user passwords or personal data stored beyond verification necessity.
+
+---
+
+## APIs & Integration
+
+LawLinkGlobal offers RESTful API endpoints for seamless integration with external services and extensions.
+
+### API Endpoints Overview:
+
+**Authentication API**
+- `POST /api/v1/auth/connect-wallet`
+- Wallet-based authentication and user session creation.
+
+**Lawyer Search API**
+- `GET /api/v1/lawyers`
+- Search for verified lawyers by specialty, language, rating, availability, and more.
+
+**Appointment API**
+- `POST /api/v1/appointments`
+- Schedule appointments, trigger escrow smart contracts.
+
+**Calendar Management API (Lawyers only)**
+- `GET /api/v1/lawyer/calendar`
+- Manage and retrieve lawyer availability.
+
+**Escrow Payment API**
+- `POST /api/v1/escrow/payments`
+- Securely handle escrow payments and track their status.
+
+**Currency Conversion API**
+- `GET /api/v1/currency/conversion`
+- Real-time SUI to USD currency conversion.
+
+**Support & Notification API**
+- `POST /api/v1/support`
+- Submit support tickets; notifications sent to admin dashboard.
+
+*Detailed API specifications, authentication tokens, and example requests/responses will be available in an upcoming API Reference section.*
+
+---
+
+## Technology Stack
+
+| Component              | Technology/Framework                   |
+| ---------------------- | -------------------------------------- |
+| Blockchain             | Sui Network                             |
+| Smart Contract Language| Move                                    |
+| Front-End              | React.js, Next.js                       |
+| Wallet Integration     | Sui Wallet (browser extension/mobile)   |
+| Backend & Microservices| Node.js, Express.js, TypeScript         |
+| Data Storage           | PostgreSQL (non-sensitive data), Redis (cache) |
+| Document Encryption    | AES-256                                 |
+| Decentralized Storage  | IPFS, Arweave (for DocPeers module)     |
+
+---
+
+## System Architecture Diagram
+
+Here's a simplified overview of the LawLinkGlobal platform architecture:
+
+- **User Wallet**
+  - Connects securely using blockchain-based authentication (Sui Wallet).
+
+- **Front-End Application (React.js / Next.js)**
+  - Provides a responsive, intuitive user interface for clients and lawyers.
+
+- **Authentication Layer**
+  - Wallet-based decentralized identity management ensuring secure access.
+
+- **Backend APIs (Node.js, Express.js, TypeScript)**
+  - RESTful APIs managing user requests, data processing, and integrations.
+
+- **Microservices Layer**
+  - **Appointment Scheduling Service**
+  - **Escrow & Payment Service** (Sui Smart Contracts)
+  - **KYC Verification & Whitelisting Service**
+  - **Real-time Chatbox Communication Service**
+  - **Notification & Currency Conversion Service**
+
+- **Blockchain Integration (Sui Network)**
+  - Immutable transaction records, escrow handling, and lawyer verification.
+
+- **Secure Off-chain Storage**
+  - Encrypted temporary storage of verification documents.
+  - Automatic deletion post-verification for data privacy compliance.
+
+
+---
+
+## Roadmap & Future Integrations
+
+Upcoming technical enhancements and integrations:
+
+- **DocPeers Integration:** Decentralized document storage via IPFS/Arweave with blockchain verification.
+- **Web3 Tooling for DAOs & DeFi:** Smart contract templates, compliance tools, and blockchain-based legal integration.
+- **Developer SDK:** Comprehensive SDK and developer tools for seamless integration and extension.
+
+---
+
+## Developer Support
+
+For technical assistance or integration support:
+
+- Submit a request via [Support Page](../community-support).
+- Reach out directly through [Contact Form](../contact).
+
+Join our community for technical updates, announcements, and developer collaboration:
+
+- [LinkedIn](https://www.linkedin.com/company/lawlinkglobal)
+- [X (Twitter)](https://x.com/lawlinkglobal)
+- [Medium](https://medium.com/lawlinkglobal)
+
+---
+
+Thank you for integrating with LawLinkGlobal. Together, we're revolutionizing global legal services through blockchain and decentralization.
